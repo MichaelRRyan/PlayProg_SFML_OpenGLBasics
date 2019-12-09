@@ -10,8 +10,16 @@ using namespace sf;
 
 enum class ShapeName
 {
-	Triangle,
-	Point
+	Point,
+	Lines,
+	LineStrip,
+	LineLoop,
+	Triangles,
+	TriangleStrip,
+	TriangleFan,
+	Quads,
+	QuadStrip,
+	Polygon
 };
 
 class Game
