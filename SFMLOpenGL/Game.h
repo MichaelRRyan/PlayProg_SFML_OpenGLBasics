@@ -3,9 +3,16 @@
 #include <SFML/OpenGL.hpp>
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#include <typeinfo>
 
 using namespace std;
 using namespace sf;
+
+enum class ShapeName
+{
+	Triangle,
+	Point
+};
 
 class Game
 {
@@ -20,6 +27,8 @@ private:
 	void update();
 	void draw();
 	void unload();
+
+	ShapeName m_currentShape;
 
 	// // Uncomment for Part 2
 	// // ********************
