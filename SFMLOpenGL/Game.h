@@ -3,23 +3,23 @@
 #include <SFML/OpenGL.hpp>
 #include <gl/GL.h>
 #include <gl/GLU.h>
-#include <typeinfo>
 
 using namespace std;
 using namespace sf;
 
-enum class ShapeName
+const std::string NAMES[]
 {
-	Point,
-	Lines,
-	LineStrip,
-	LineLoop,
-	Triangles,
-	TriangleStrip,
-	TriangleFan,
-	Quads,
-	QuadStrip,
-	Polygon
+	"Points",
+	"Lines",
+	"LineStrip",
+	"LineLoop",
+	"Triangles",
+	"TriangleStrip",
+	"TriangleFan",
+	"Quads",
+	"QuadStrip",
+	"Polygon",
+	"Model"
 };
 
 class Game
@@ -29,23 +29,20 @@ public:
 	~Game();
 	void run();
 private:
-	Window window;
-	bool isRunning = false;
+	void processEvents();
 	void initialize();
+	void loadModel();
 	void update();
 	void draw();
 	void unload();
 
-	ShapeName m_currentShape;
+	Window window;
+	bool isRunning = false;
 
-	// // Uncomment for Part 2
-	// // ********************
-	// const int primatives;
+	const int primatives;
 
-	//GLuint index;
-	//Clock clock;
-	//Time elapsed;
+	GLuint index;
 
-	//float rotationAngle = 0.0f;
-	// // ********************
+	float rotationAngle = 0.0f;
+	float m_scale = 1.000f;
 };
