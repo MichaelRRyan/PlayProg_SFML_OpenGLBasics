@@ -85,6 +85,7 @@ void Game::initialize()
 	glNewList(index, GL_COMPILE);
 	glBegin(GL_POINTS);
 	{
+		glColor3f(1.0f, 1.0f, 1.0f);
 		glVertex3f(0.0, 1.0, 0.0);
 		glVertex3f(-1.0, -1.0, 0.0);
 		glVertex3f(1.0, -1.0, 0.0);
@@ -176,17 +177,17 @@ void Game::initialize()
 	glNewList(index + 7, GL_COMPILE);
 	glBegin(GL_QUADS);
 	{
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(0.0, -1.0, 0.0);
+		glColor3f(1.0f, 0.0f, 0.0f); 
+		glVertex3f(0.0, -1.0, 0.0); // Bottom left
 
 		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex3f(-1.0, 1.0, 0.0);
+		glVertex3f(-1.0, 1.0, 0.0); // Top left
 
 		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f(1.0, 1.0, 0.0);
+		glVertex3f(1.0, 1.0, 0.0); // Top right
 
 		glColor3f(1.0f, 1.0f, 0.0f);
-		glVertex3f(2.0, -1.0, 0.0);
+		glVertex3f(2.0, -1.0, 0.0); // Bottom right
 	}
 	glEnd();
 	glEndList();
