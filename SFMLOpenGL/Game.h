@@ -43,6 +43,7 @@ private:
 
 	GLuint index;
 
-	float rotationAngle = 0.0f;
+	sf::Vector3f m_rotation;
+	sf::Vector3f m_translation;
 	float m_scale = 1.000f;
 };

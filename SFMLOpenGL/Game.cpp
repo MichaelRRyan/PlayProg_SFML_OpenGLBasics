@@ -11,6 +11,9 @@ Game::Game() :
 	primatives(11)
 {
 	 index = glGenLists(primatives);
+	 m_translation = { 0.0f, 0.0f, 0.0f };
+	 m_rotation = { 0.0f, 0.0f, 0.0f };
+	 m_scale = 1.0f;
 }
 
 Game::~Game() {}
@@ -62,7 +65,9 @@ void Game::processEvents()
 
 				cout << "Switched to Primative " << current << " \"" << NAMES[current - index] << "\"" << endl;
 				glLoadIdentity();
-				glTranslatef(0.0f, 0.0f, -5);
+				m_translation = { 0.0f, 0.0f, 0.0f };
+				m_rotation = { 0.0f, 0.0f, 0.0f };
+				m_scale = 1.0f;
 			}
 		}
 	}
@@ -274,56 +279,64 @@ void Game::update()
 	// Rotations
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 	{
-		glRotatef(0.5f, 0.0f, 0.0f, 1.0f);
+		m_rotation.z += 0.5f;
+		//glRotatef(0.5f, 0.0f, 0.0f, 1.0f);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y))
 	{
-		glRotatef(0.5f, 0.0f, 1.0f, 0.0f);
+		m_rotation.y += 0.5f;
+		//glRotatef(0.5f, 0.0f, 1.0f, 0.0f);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
 	{
-		glRotatef(0.5f, 1.0f, 0.0f, 0.0f);
+		m_rotation.x += 0.5f;
+		//glRotatef(0.5f, 1.0f, 0.0f, 0.0f);
 	}
 
 	// Translations
 	float speed = 0.05f;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		glTranslatef(speed, 0.0f, 0.0f);
+		m_translation.x += speed;
+		//glTranslatef(speed, 0.0f, 0.0f);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		glTranslatef(-speed, 0.0f, 0.0f);
+		m_translation.x -= speed;
+		//glTranslatef(-speed, 0.0f, 0.0f);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		glTranslatef(0.0f, speed, 0.0f);
+		m_translation.y += speed;
+		//glTranslatef(0.0f, speed, 0.0f);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		glTranslatef(0.0f, -speed, 0.0f);
+		m_translation.y -= speed;
+		//glTranslatef(0.0f, -speed, 0.0f);
 	}
 
 	// Scales
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
 	{
-		m_scale += 0.05f;
-		std::cout << m_scale << std::endl;
+		m_scale += 0.1;
 		
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
 	{
-		m_scale -= 0.05f;
-		std::cout << m_scale << std::endl;
+		m_scale -= 0.1;
+		//glScalef(0.9f, 0.9f, 0.9f);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab))
-	{
-		m_scale = 1.0f;
-		std::cout << m_scale << std::endl;
-	}
+
+	glLoadIdentity();
+	glTranslatef(0.0f, 0.0f, -5);
+	glTranslatef(m_translation.x, m_translation.y, m_translation.z);
+	glRotatef(m_rotation.x, 1.0f, 0.0f, 0.0f);
+	glRotatef(m_rotation.y, 0.0f, 1.0f, 0.0f);
+	glRotatef(m_rotation.z, 0.0f, 0.0f, 1.0f);
 	glScalef(m_scale, m_scale, m_scale);
 }
 
